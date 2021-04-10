@@ -1,9 +1,7 @@
 import "../styling/about.scss"
-import "../gsap/menu"
+//import "../gsap/menu"
 
 
-
-// Animation
 
 
 
