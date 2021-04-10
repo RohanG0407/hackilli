@@ -13,7 +13,7 @@
   position: fixed; /*Can also be `fixed`*/
   left: 0;
   right: 0;
-  top: 23%;
+  top: 20%;
   margin: auto;
   text-align: center;
   /*Solves a problem in which the content is being cut when the div is smaller than its' wrapper:*/
@@ -25,8 +25,8 @@
 
 #titleQuestion {
   margin: auto;
-  width: 50%;
-  height: 30%;
+  width: 55%;
+  height: 35%;
   position: fixed;
   left: 15%;
   right: 15%;
@@ -34,7 +34,7 @@
   border: 5px solid pink;
   padding:10px;
   border-radius: 25px;
-  opacity: 0.4;
+  opacity: 0.35;
   background: linear-gradient(45deg,pink, deeppink, hotpink , lightpink);
   background-size: 600% 100%;
   animation: gradient 16s linear infinite;
@@ -46,17 +46,17 @@
 }
 
 .button1 {
-  right: 52%;
-  top: 58%;
+  right: 54%;
+  top: 62%;
 }
 
 .button2 {
-  right: 28%;
-  top: 58%;
+  right: 26%;
+  top: 62%;
 }
 
 .button1, .button2 {
-  background-color: orangered;
+  background-color: hotpink;
   width: 20%;
   height: 10%;
   position: fixed;
@@ -64,7 +64,7 @@
   text-align: center;
   font-size: 16px;
   margin: 4px 2px;
-  opacity: 0.7;
+  opacity: 0.6;
   transition: 0.3s;
   display: inline-block;
   text-decoration: none;
