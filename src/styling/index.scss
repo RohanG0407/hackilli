@@ -33,9 +33,16 @@
   top: 41%;
   border: 5px solid pink;
   padding:10px;
-  background:#c00;
   border-radius: 25px;
-  opacity: 0.5;
+  opacity: 0.4;
+  background: linear-gradient(45deg,pink, deeppink, hotpink , lightpink);
+  background-size: 600% 100%;
+  animation: gradient 16s linear infinite;
+  animation-direction: alternate;
+}
+@keyframes gradient {
+  0% {background-position: 0%}
+  100% {background-position: 100%}
 }
 
 .button1 {
