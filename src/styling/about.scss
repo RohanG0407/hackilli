@@ -1,2 +1,84 @@
 @import "common";
 @import "common-page";
+
+:root {
+  --holder_c1: #4c474c;
+  --holder_c2: #141414;
+  --but_bord1: #aaa;
+  --but_bord2: #333;
+  --but_top_pre: #d9afd9;
+  --but_bot_pre: #ff4d4d;
+  --but_top_post: #de49de;
+  --but_bot_post: #ff1919;
+  --but_top_rec: #b30003;
+  --but_bot_rec: #ff0822;
+
+}
+
+body {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.holder {
+  background-color: var(--holder_c1);
+  background-image: linear-gradient(0deg, var(--holder_c1) 0%, var(--holder_c2) 100%);
+  border-radius: 50px;
+}
+[data-role="controls"] > button {
+  transition: 0.4s;
+  margin: 25px auto;
+  outline: none;
+  display: block;
+  border: none;
+  background-image: linear-gradient(0deg, var(--but_bot_pre) 50%, var(--but_top_pre) 100%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  text-indent: -100em;
+  cursor: pointer;
+  box-shadow: 0px 5px 5px 2px rgba(0, 0, 0, 0.3) inset,
+  0px 0px 0px 4px var(--but_bord1), 0px 0px 0px 10px var(--but_bord2);
+}
+[data-role="controls"] > button:hover {
+  background-image: linear-gradient(0deg, var(--but_bot_post) 50%, var(--but_top_post) 100%);
+}
+[data-role="controls"] > button[recording="true"] {
+  background-image: linear-gradient(0deg, var(--but_bot_rec) 0%, var(--but_top_rec) 100%);
+}
+[data-role="recordings"] > .row {
+  width:auto;
+  height: auto;
+  padding: 20px;
+}
+[data-role="recordings"] > .row >  {
+  outline: none;
+}
+[data-role="recordings"] > .row > a {
+  display: inline-block;
+  text-align: center;
+  font-size: 20px;
+  line-height: 50px;
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: underline;
+  background-color: #0093E9;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#0093E9), to(#80D0C7));
+  background-image: -o-linear-gradient(bottom, #0093E9 0%, #80D0C7 100%);
+  background-image: linear-gradient(0deg, #0093E9 0%, #80D0C7 100%);
+  float: right;
+  margin-left: 20px;
+  cursor: pointer;
+}
+[data-role="recordings"] > .row > a:hover {
+  background-image: linear-gradient(0deg, #0093E9 0%, #16dbc5 100%);
+}
