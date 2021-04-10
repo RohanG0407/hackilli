@@ -1,0 +1,12 @@
+@import "./common";
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap');
+
+#screen {
+  overflow: hidden;
+}
+
+.topPage {
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+}
