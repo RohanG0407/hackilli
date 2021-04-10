@@ -1,0 +1,154 @@
+@import url("https://fonts.googleapis.com/css2?family=Vollkorn:wght@501;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Vollkorn:wght@501;900&display=swap");
+html, body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow-y: visible;
+  overflow-x: hidden;
+  color: #D6CFCB;
+  font-family: Vollkorn, serif;
+}
+
+hr {
+  color: #222831;
+  height: 0px;
+  border-width: 0;
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+#screen {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  font-weight: normal;
+  overflow: visible;
+  top: 0;
+  bottom: 0;
+  background: #222831;
+}
+
+#initial-page {
+  z-index: 5;
+  height: 100%;
+  width: 100%;
+}
+
+.topScreen {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: #222831;
+  z-index: 1;
+}
+
+.unique-contents {
+  height: 100vh;
+  width: 100vw;
+  z-index: 0;
+  background: #222831;
+}
+
+#topMenu {
+  z-index: 10;
+  font-size: 1.2rem;
+  display: none;
+  justify-content: flex-end;
+  flex-flow: row;
+  width: 20%;
+  right: 0%;
+  height: 5%;
+  margin-top: 2%;
+  position: absolute;
+  float: right;
+  padding-right: 2%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.menuItem {
+  z-index: 2;
+  margin-right: 10%;
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+  white-space: normal;
+}
+
+.menuLink {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+#topMenu {
+  top: 0;
+  display: inline-flex;
+  position: fixed;
+}
+
+.descHeader {
+  font-size: 2.1rem;
+  margin-bottom: 10px;
+}
+
+.descText {
+  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+}
+
+#bottomScreen {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background: #222831;
+}
+
+#scrollGraphic {
+  bottom: 5%;
+  margin: 0 auto;
+  right: 47%;
+  z-index: 5;
+  position: fixed;
+}
+
+#bottomScreenWorks {
+  width: 100vw;
+  height: 300vh;
+  position: relative;
+  background: #222831;
+}
+
+#flex-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  justify-content: center;
+}
+
+.flex-item {
+  height: 20%;
+  width: 60%;
+  cursor: pointer;
+  border: 1px solid white;
+  margin: 5% auto;
+}
+
+/*# sourceMappingURL=works.css.map */

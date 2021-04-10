@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Vollkorn:wght@501;900&display=swap');
+
+
+#topMenu {
+  top: 0;
+  display: inline-flex;
+  position: fixed;
+}
+
+.descHeader {
+  font-size: 2.1rem;
+  margin-bottom: 10px;
+}
+
+.descText {
+  font-size: 1.3rem;
+  letter-spacing: .1rem;
+}
+
+#bottomScreen {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background: #222831;
+}
+
+#scrollGraphic {
+  bottom: 5%;
+  margin: 0 auto;
+  right: 47%;
+  z-index: 5;
+  position: fixed;
+}
+
