@@ -1,8 +1,8 @@
 class AudioPlayer {
-    constructor(selector, color1="#273c75", color2="#079992", color3="#32CD32", color4="#fff") {
+    constructor(selector, color1="#ff00ff", color2="#ff6600", color3="#32CD32", color4="#fff") {
         this.playerElement = document.querySelector(selector);
         this.playerElement.style.width = "100%";
-        this.playerElement.style.height = "100%";
+        this.playerElement.style.height = "60%";
         this.playerElement.style.float = "right";
         this.playerElement.style.display = "flex";
         this.playerElement.style.justifyContent = "center";

@@ -17,13 +17,20 @@ sendButton.addEventListener("click", function(e) {
         var messageData = messages.createMsg();
         var msg = messageData[0];
         var count = messageData[1];
+        var textDiv = document.createElement('div');
         var audioDiv = document.createElement('div');
+
+        msg.appendChild(textDiv);
         msg.appendChild(audioDiv);
         audioDiv.id = "audio" + count;
-        msg.style.width = "70%";
-        msg.style.height = "100px";
+
         var audio = new AP.AudioPlayer("#" + audioDiv.id);
         audio.setSrc(player.getSrc());
+
+        msg.style.width = "60%";
+        msg.style.height = "100px";
+        msg.style.margin = "2%";
+        msg.style.backgroundImage = "linear-gradient(0deg, var(--holder_c1) 0%, var(--holder_c2) 100%)";
     }
 });
 

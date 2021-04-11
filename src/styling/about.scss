@@ -1,9 +1,10 @@
 @import "common";
 @import "common-page";
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap%27');
 
 :root {
-  --holder_c1: #4c474c;
-  --holder_c2: #141414;
+  --holder_c1: red;
+  --holder_c2: purple;
   --but_bord1: #aaa;
   --but_bord2: #333;
   --but_top_pre: #de7ede;
@@ -24,6 +25,18 @@ body {
   height: 100%;
   width: 100%;
   margin: 0;
+  background-image: url('https://image.shutterstock.com/image-photo/light-pink-purple-magenta-pastel-260nw-414743296.jpg  ');
+  background-repeat: no-repeat;
+  background-size: 100% 110%;
+}
+
+#logo {
+  width: 58%;
+  height: 15%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  top: 8%;
 }
 
 #main {
@@ -35,17 +48,49 @@ body {
 }
 
 #controls {
-  width:50%;
+  display: block;
+  margin-bottom: 10px;
+  align-items: center;
+  width: 50%;
+  height: 80%;
+  margin-top: 10%;
+}
+
+#homepage, #rematch, #meet {
+  font-family: Londrina solid, cursive;
+  margin-bottom: 2%;
+  margin-top: 7%;
+  margin-left: 30%;
+  width: 50%;
+  height: 20%;
+  justify-content: center;
+}
+
+.button {
+  cursor: pointer;
+  font-family: Londrina solid, cursive;
+  font-size: 40px;
+  width: 75%;
   height: 100%;
-  float: left;
+  background-color: lightpink;
+  border: 4px solid hotpink;
+  border-radius: 35%;
+  color: white;
+  opacity: 0.7;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
 }
 
 #msgContainer {
   height: 80%;
   width: 40%;
   background-color: lightpink;
-  border-radius: 30px;
+  border-radius: 35px;
   float: right;
+  border: 5px solid hotpink;
 }
 
 #msgHolder {
@@ -56,8 +101,8 @@ body {
 #recHolder {
   background-color: var(--holder_c1);
   background-image: linear-gradient(0deg, var(--holder_c1) 0%, var(--holder_c2) 100%);
-  border-radius: 50px;
-  width: 80%;
+  border-radius: 30px;
+  width: 100%;
   height: var(--bot_bar_height);
 }
 
@@ -65,6 +110,8 @@ body {
   width: calc(100% - 2 * var(--but_width));
   height: 100%;
   float: left;
+  display: flex;
+  align-items: center
 }
 #recordButtonHolder {
   width: var(--but_width);
