@@ -1,6 +1,9 @@
 @import "./common";
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap');
 
+body {
+  font-family: Londrina solid, cursive;
+}
 .homePage {
   width: 100vw;
   height: 100vh;
@@ -21,7 +24,7 @@
   overflow: visible;
 }
 
-#questionName1, #questionName2, #questionName3 {
+#questionName1, #questionName2, #questionName3, #questionName0 {
   text-align: center;
   margin: auto;
   width: 55%;
@@ -37,9 +40,15 @@
   background-size: 600% 100%;
   animation: gradient 16s linear infinite;
   animation-direction: alternate;
+  font-size: 50px;
 }
-#questionName1 {
+
+#questionName0 {
   opacity: 0.35;
+}
+
+#questionName1 {
+  opacity: 0;
 }
 #questionName2 {
   opacity: 0;
@@ -62,7 +71,7 @@
 }
 
 #button1, #button2 {
-  opacity: 0.4;
+  opacity: 0;
   z-index: 10;
 }
 
@@ -74,6 +83,26 @@
 #button5, #button6 {
   z-index: 8;
   opacity: 0;
+}
+
+#textfield {
+  position: absolute;
+  font-family: Londrina solid, cursive;
+  background-color: hotpink;
+  width: 23%;
+  height: 12%;
+  top: 60%;
+  right: 39%;
+  opacity: .5;
+  border: 3px solid mediumvioletred;
+  text-align: center;
+  font-size: 50px;
+  margin: 4px 2px;
+  transition: 0.3s;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 #button1, #button2, #button3, #button4, #button5, #button6 {

@@ -9,17 +9,21 @@ import "firebase/database";*/
 //initializing things to manipulate
 const offsetRight = 1.65;
 const offsetLeft = -4.9;
-var question1 = document.getElementById("questionName1");
-var question2 = document.getElementById("questionName2");
-var question3 = document.getElementById("questionName3");
-var button1 = document.getElementById("button1");
-var button2 = document.getElementById("button2");
-var button3 = document.getElementById("button3");
-var button4 = document.getElementById("button4");
-var button5 = document.getElementById("button5");
-var button6 = document.getElementById("button6");
+let question0 = document.getElementById("questionName0");
+let question1 = document.getElementById("questionName1");
+let question2 = document.getElementById("questionName2");
+let question3 = document.getElementById("questionName3");
+let button1 = document.getElementById("button1");
+let button2 = document.getElementById("button2");
+let button3 = document.getElementById("button3");
+let button4 = document.getElementById("button4");
+let button5 = document.getElementById("button5");
+let button6 = document.getElementById("button6");
+let input = document.getElementById("textfield");
 
 //disables all buttons excpet 1 and 2
+button1.style.pointerEvents = "none";
+button2.style.pointerEvents = "none";
 button3.style.pointerEvents = "none";
 button4.style.pointerEvents = "none";
 button5.style.pointerEvents = "none";
@@ -35,6 +39,26 @@ document.getElementById("button3").addEventListener
 document.getElementById("button4").addEventListener
 ("click", function() { secondMove(button4, button3, offsetLeft, offsetRight)});
 
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        firstMove(button1, button2);
+    }
+});
+
+function firstMove(button1, button2) {
+    removeQuestion(question0, input, null);
+    setTimeout(function(){
+        addQuestion(question1, button1, button2);
+    }, 2000);
+    setTimeout(function(){
+        sortButtons(null, null, button1, button2);
+    }, 3000);
+}
 
 function initialMove(button1, button2, offset1, offset2) {
     moveLogo();
@@ -61,8 +85,10 @@ function secondMove(firstButton, secondButton, offset1, offset2) {
 }
 
 function sortButtons(button1, button2, button3, button4) {
-    button1.style.pointerEvents = "none";
-    button2.style.pointerEvents = "none";
+    if(button1 != null && button2 != null) {
+        button1.style.pointerEvents = "none";
+        button2.style.pointerEvents = "none";
+    }
     button3.style.zIndex = 10;
     button3.style.pointerEvents = "auto";
     button4.style.zIndex = 10;
@@ -105,7 +131,7 @@ function moveButton(chosenButton, otherButton, offset1, offset2) {
     let initialLeft2 = otherButton.offsetLeft;
 
     animate({
-        duration: 2500,
+        duration: 2100,
         draw: function(progress) {
             chosenButton.style.width = -(progress * initialWidth / 4) + initialWidth + 'px';
             chosenButton.style.height = -(progress * initialHeight / 1.7) + initialHeight + 'px';
@@ -126,8 +152,14 @@ function removeQuestion(question, button1, button2) {
         duration: 1000,
         draw: function(progress) {
             question.style.opacity = 0.35 - (progress * 0.35)
-            button1.style.opacity = 0.35 - (progress * 0.35);
-            button2.style.opacity = 0.35 - (progress * 0.35);
+            if(button1 != null) {
+                button1.style.opacity = 0.35 - (progress * 0.35);
+            }
+            if(button2 != null) {
+                button2.style.opacity = 0.35 - (progress * 0.35);
+            }
+
+
         },
         timing: quadEaseInOut
     });
