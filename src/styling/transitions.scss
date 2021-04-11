@@ -1,15 +1,29 @@
-body{
+.container{
   animation: transitionIn 4s;
 }
-
+.test1.animated{
+  animation: transitionOut 4s ease;
+}
 @keyframes transitionIn {
   from{
     opacity: 0;
-    transform: rotateX(-10deg);
+    transform: rotateX(-30deg);
   }
 
   to{
     opacity: 1;
-    transform: rotateX(0);
+    transform: rotateX(0deg);
+  }
+}
+
+@keyframes transitionOut {
+  from{
+    opacity: 1;
+    transform: rotateX(-30deg);
+  }
+
+  to{
+    opacity: 0;
+    transform: rotateX(30deg);
   }
 }

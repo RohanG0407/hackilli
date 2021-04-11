@@ -1,4 +1,5 @@
 import "../styling/index.scss"
+import "../styling/transitions.scss"
 //import "../gsap/menu"
 import "../js/maps"
 import { gsap } from "gsap";
@@ -133,6 +134,10 @@ document.getElementById("button5").addEventListener
         name: username,
         type: psycho_type
     });
+    /*$(".test1").addClass('animated');
+    setTimeout(function() {
+        $(".test1").removeClass('animated');
+    }, 1500);*/
     location.replace("matching.html")
 });
 
@@ -157,6 +162,10 @@ document.getElementById("button6").addEventListener
         name: username,
         type: psycho_type
     });
+    /*$(".test1").addClass('animated');
+    setTimeout(function() {
+        $(".test1").removeClass('animated');
+    }, 1500);*/
     location.replace("matching.html")
 });
 
