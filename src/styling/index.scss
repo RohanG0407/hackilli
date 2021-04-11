@@ -51,7 +51,7 @@ body {
 }
 
 #questionName0 {
-  opacity: 0.35;
+  opacity: 0.5;
 }
 
 #questionName1 {
@@ -78,16 +78,19 @@ body {
 }
 
 #button1, #button2 {
+  font-family: Londrina solid, cursive;
   opacity: 0;
   z-index: 10;
 }
 
 #button3, #button4 {
+  font-family: Londrina solid, cursive;
   z-index: 9;
   opacity: 0;
 }
 
 #button5, #button6 {
+  font-family: Londrina solid, cursive;
   z-index: 8;
   opacity: 0;
 }

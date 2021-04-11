@@ -89,7 +89,8 @@ class AudioPlayer {
 
     setSrc(src) {
         if (src != null) {
-            this.audioElement.src = src;
+            this.audioElement = new Audio(src);
+            this.audioElement.type = "audio/webm"
             this.isNew = true;
         }
     }

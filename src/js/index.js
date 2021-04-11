@@ -298,7 +298,7 @@ function removeQuestion(question, button1, button2) {
 }
 
 function addQuestion(question, button1, button2) {
-    gsap.to(question, {opacity: .35, duration: 1})
+    gsap.to(question, {opacity: .5, duration: 1})
     gsap.to(button1, {opacity: .35, duration: 1})
     gsap.to(button2, {opacity: .35, duration: 1})
 }

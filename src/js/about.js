@@ -1,7 +1,7 @@
 import "../styling/about.scss"
 import firebase from "firebase/app";
 import "firebase/storage";
-
+import "firebase/firestore"
 var firebaseConfig = {
     apiKey: "AIzaSyDADvqzekpnzT_Fc4U2SQeop5d4bn_P3QE",
     authDomain: "hackilli.firebaseapp.com",
@@ -17,7 +17,6 @@ firebase.initializeApp(firebaseConfig);
 
 var storage = firebase.storage();
 
-
 var MSGS = require("./Messages.js");
 var messages = new MSGS.Messages("#msgHolder");
 
@@ -31,10 +30,18 @@ var messageCount = 0;
 
 var user = JSON.parse(sessionStorage.getItem("user"));
 
+/*
+const doc = storage.collection('audios');
+console.log(doc)
+doc.onSnapshot((doc) => {
+        console.log("Current data: ", doc);
+    });
+*/
+
 sendButton.addEventListener("click", function(e) {
     if (player.checkNew() === true) {
         sendMessage("YOU", player.getSrc());
-        sendMessage("UR MOM", player.getSrc());
+        //sendMessage("UR MOM", player.getSrc());
     }
 });
 
@@ -133,8 +140,34 @@ function handleMic() {
         recorder.addEventListener('dataavailable', function(e) {
             if (e.data.size != 0) {
                 const audioUrl = URL.createObjectURL(e.data);
-                player.setSrc(audioUrl);
-                var storageRef = firebase.storage().ref().child("audo.webm")
+                firebase.storage().ref().child('audios/audo.webm').getDownloadURL()
+                    .then((metadata) => {
+                        console.log(metadata)
+                        console.log(audioUrl)
+                        player.setSrc(metadata);
+                    })
+                    .catch((error) => {
+                        // Uh-oh, an error occurred!
+                    });
+                /*firebase.storage().ref().child('audios/audo.webm').getDownloadURL()
+                    .then((url) => {
+                        var xhr = new XMLHttpRequest();
+                        xhr.responseType = 'blob';
+                        xhr.onload = (event) => {
+                            var blob = xhr.response;
+                            console.log(blob)
+                        };
+                        xhr.open('GET', url);
+                        xhr.send();
+
+                        player.setSrc(url);
+                    })
+                    .catch((error) => {
+
+                    });*/
+
+
+                var storageRef = firebase.storage().ref().child("audios").child("audo.webm")
                 storageRef.put(e.data).then((snapshot) => {
                     console.log('Uploaded a blob or file!');
                 });
