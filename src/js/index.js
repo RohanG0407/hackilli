@@ -124,6 +124,7 @@ document.getElementById("button5").addEventListener
         name: username,
         type: psycho_type
     });
+    location.replace("matching.html")
 });
 
 document.getElementById("button6").addEventListener
@@ -135,6 +136,7 @@ document.getElementById("button6").addEventListener
         name: username,
         type: psycho_type
     });
+    location.replace("matching.html")
 });
 
 // Execute a function when the user releases a key on the keyboard
