@@ -1,19 +1,13 @@
 import "../styling/index.scss"
-import "../styling/transitions.scss"
 //import "../gsap/menu"
 import "../js/maps"
 import { gsap } from "gsap";
-//import "../js/matching"
-//import "../js/script.js"
-//import "../styling/transitions.scss"
-//import "../js/script"
 
-//import {writeUserData, readData} from "./firebase-database";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 
-let firebaseConfig = {
+var firebaseConfig = {
     apiKey: "AIzaSyDADvqzekpnzT_Fc4U2SQeop5d4bn_P3QE",
     authDomain: "hackilli.firebaseapp.com",
     databaseURL: "https://hackilli-default-rtdb.firebaseio.com",
@@ -125,11 +119,21 @@ document.getElementById("button5").addEventListener
     f_or_t = "feeling"
     psycho_type = psycho_type.concat("F")
     console.log(psycho_type)
+    let userObj = {
+        name: username,
+        type: psycho_type
+    };
+    /*let data = JSON.stringify(userObj, null, 2);
+
+    fs.writeFile('user.json', data, (err) => {
+        if (err) throw err;
+        console.log('Data written to file');
+    }); */
     firebase.database().ref('/users/').push({
         name: username,
         type: psycho_type
     });
-    location.replace("/matching.html")
+    location.replace("matching.html")
 });
 
 document.getElementById("button6").addEventListener
@@ -137,11 +141,23 @@ document.getElementById("button6").addEventListener
     f_or_t = "thinking"
     psycho_type = psycho_type.concat("T")
     console.log(psycho_type)
+    let userObj = {
+        name: username,
+        type: psycho_type
+    };
+    /*
+    let data = JSON.stringify(userObj, null, 2);
+
+    fs.writeFile('user.json', data, (err) => {
+        if (err) throw err;
+        console.log('Data written to file');
+    }); */
+
     firebase.database().ref('/users/').push({
         name: username,
         type: psycho_type
     });
-    location.replace("/matching.html")
+    location.replace("matching.html")
 });
 
 // Execute a function when the user releases a key on the keyboard
