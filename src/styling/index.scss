@@ -51,7 +51,7 @@ body {
 }
 
 #questionName0 {
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 #questionName1 {
@@ -61,7 +61,7 @@ body {
   opacity: 0;
 }
 #questionName3 {
-   opacity: 0;
+  opacity: 0;
  }
 
 @keyframes gradient {
@@ -78,19 +78,16 @@ body {
 }
 
 #button1, #button2 {
-  font-family: Londrina solid, cursive;
   opacity: 0;
   z-index: 10;
 }
 
 #button3, #button4 {
-  font-family: Londrina solid, cursive;
   z-index: 9;
   opacity: 0;
 }
 
 #button5, #button6 {
-  font-family: Londrina solid, cursive;
   z-index: 8;
   opacity: 0;
 }
@@ -138,5 +135,6 @@ body {
 #button4:hover {opacity: 1.3 !important}
 #button5:hover {opacity: 1.3 !important}
 #button6:hover {opacity: 1.3 !important}
+#questionName1:hover {opacity: 2 !important}
 
 
