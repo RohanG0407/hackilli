@@ -114,6 +114,7 @@ function handleMic() {
             if (e.data.size != 0) {
                 const audioUrl = URL.createObjectURL(e.data);
                 player.setSrc(audioUrl);
+                console.log(e.data)
             }
         });
     };

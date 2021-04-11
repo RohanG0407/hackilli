@@ -38,6 +38,7 @@ module.exports = {
             new TerserPlugin(),
         ]
     },
+
     plugins: [
         new CleanWebpackPlugin(),
 
