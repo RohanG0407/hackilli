@@ -21,6 +21,27 @@ firebase.initializeApp(firebaseConfig);
 
 let database = firebase.database()
 
+var data = null
+
+let random_situation;
+
+firebase.database().ref('/situations').once('value').then((snapshot) => {
+    data = snapshot.val()
+
+    let min = Math.ceil(1);
+    let max = Math.floor(4);
+    let num = Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+
+    if(num === 1) {
+        random_situation = data.one
+    } else if(num === 2) {
+        random_situation = data.two
+    } else {
+        random_situation = data.three
+    }
+
+    //console.log(random_situation)
+});
 
 //initializing things to manipulate
 const offsetRight = 1.65;
@@ -36,6 +57,20 @@ let button4 = document.getElementById("button4");
 let button5 = document.getElementById("button5");
 let button6 = document.getElementById("button6");
 let input = document.getElementById("textfield");
+let Q1 = document.getElementById("question1");
+let Q2 = document.getElementById("question2");
+let Q3 = document.getElementById("question3");
+let A1 = document.getElementById("answer1");
+let A2 = document.getElementById("answer2");
+let A3 = document.getElementById("answer3");
+let A4 = document.getElementById("answer4");
+let A5 = document.getElementById("answer5");
+let A6 = document.getElementById("answer6");
+let e_or_I
+let n_or_s
+let f_or_t
+let psycho_type = "";
+let username;
 
 //disables all buttons excpet 1 and 2
 button1.style.pointerEvents = "none";
@@ -47,13 +82,58 @@ button6.style.pointerEvents = "none";
 
 //assigns each button an on click event listener
 document.getElementById("button1").addEventListener
-("click", function() { initialMove(button1, button2, offsetRight, offsetLeft)});
+("click", function() {
+    initialMove(button1, button2, offsetRight, offsetLeft)
+    e_or_I = "extrovert"
+    psycho_type = "E"
+    console.log(psycho_type)
+});
+
 document.getElementById("button2").addEventListener
-("click", function() { initialMove(button2, button1, offsetLeft, offsetRight)});
+("click", function() {
+    initialMove(button2, button1, offsetLeft, offsetRight)
+    e_or_I = "introvert"
+    psycho_type = "I"
+    console.log(psycho_type)
+});
+
 document.getElementById("button3").addEventListener
-("click", function() { secondMove(button3, button4, offsetRight, offsetLeft)});
+("click", function() {
+    secondMove(button3, button4, offsetRight, offsetLeft)
+    n_or_s = "intuition"
+    psycho_type = psycho_type.concat("N")
+    console.log(psycho_type)
+});
+
 document.getElementById("button4").addEventListener
-("click", function() { secondMove(button4, button3, offsetLeft, offsetRight)});
+("click", function() {
+    secondMove(button4, button3, offsetLeft, offsetRight)
+    n_or_s = "sensing"
+    psycho_type = psycho_type.concat("S")
+    console.log(psycho_type)
+});
+
+document.getElementById("button5").addEventListener
+("click", function() {
+    f_or_t = "feeling"
+    psycho_type = psycho_type.concat("F")
+    console.log(psycho_type)
+    firebase.database().ref('/users/').push({
+        name: username,
+        type: psycho_type
+    });
+});
+
+document.getElementById("button6").addEventListener
+("click", function() {
+    f_or_t = "thinking"
+    psycho_type = psycho_type.concat("T")
+    console.log(psycho_type)
+    firebase.database().ref('/users/').push({
+        name: username,
+        type: psycho_type
+    });
+});
 
 // Execute a function when the user releases a key on the keyboard
 input.addEventListener("keyup", function(event) {
@@ -66,6 +146,7 @@ input.addEventListener("keyup", function(event) {
         //let newPostKey = firebase.database().ref().child('users').push().key;
 
         usersData.get().then(function(snapshot) {
+            username = input.value
             if (snapshot.exists()) {
                 let snap = snapshot.val();
                 console.log(snap);
@@ -73,13 +154,10 @@ input.addEventListener("keyup", function(event) {
                     if (snap.hasOwnProperty(key)) {
                         console.log(key + " -> " + snap[key]['name']);
                         if(snap[key]['name'] === input.value) {
+                            // Move to another page and break
                             break
                         }
                     }
-                    firebase.database().ref('/users/').push({
-                        name: input.value,
-                        type: null
-                    });
                 }
             }
             else {
@@ -94,9 +172,18 @@ input.addEventListener("keyup", function(event) {
     }
 });
 
+function addText(questionField, questionText, answerField1, answerField2, answerText1, answerText2) {
+    questionField.innerHTML = questionText;
+    answerField1.innerHTML = answerText1;
+    answerField2.innerHTML = answerText2;
+}
+
+
 function firstMove(button1, button2) {
     removeQuestion(question0, input, null);
     setTimeout(function(){
+        //addText(Q1,random_situation.question,A1, A2, random_situation.extrovert.answer,random_situation.introvert.answer)
+        addText(Q1,random_situation.question,A1, A2, random_situation.extrovert.answer,random_situation.introvert.answer)
         addQuestion(question1, button1, button2);
     }, 2000);
     setTimeout(function(){
@@ -109,6 +196,8 @@ function initialMove(button1, button2, offset1, offset2) {
     moveQuestion(question1, question2, button3, button4);
     moveButton(button1, button2, offset1, offset2);
     setTimeout(function(){
+        //addText(Q2,random_situation.extrovert.question,A3, A4, random_situation.extrovert.intuition.answer,random_situation.extrovert.sensing.answer)
+        addText(Q2,random_situation[e_or_I]["question"],A3, A4, random_situation[e_or_I]["intuition"]["answer"],random_situation[e_or_I]["sensing"]["answer"])
         addQuestion(question2, button3, button4);
     }, 2000);
     setTimeout(function(){
@@ -121,6 +210,8 @@ function secondMove(firstButton, secondButton, offset1, offset2) {
     moveButton(firstButton, secondButton, offset1, offset2);
     removeQuestion(question1, button1, button2);
     setTimeout(function(){
+        //addText(Q3,random_situation.extrovert.intuition.question,A5, A6, random_situation.extrovert.intuition.feeling.answer,random_situation.extrovert.intuition.thinking.answer)
+        addText(Q3,random_situation[e_or_I][n_or_s]["question"],A5, A6, random_situation[e_or_I][n_or_s]["feeling"]["answer"],random_situation[e_or_I][n_or_s]["thinking"]["answer"])
         addQuestion(question3, button5, button6);
     }, 2000);
     setTimeout(function(){
@@ -202,7 +293,6 @@ function removeQuestion(question, button1, button2) {
             if(button2 != null) {
                 button2.style.opacity = 0.35 - (progress * 0.35);
             }
-
         },
         timing: quadEaseInOut
     });
@@ -255,10 +345,6 @@ function animate({timing, draw, duration}) {
 
     });
 }
-
-let name = "Rohan"
-let type = "EST"
-
 
 
 
