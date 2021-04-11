@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const TerserPlugin = require("terser-webpack-plugin");
 
-let htmlPageNames = ['about', 'works'];
+let htmlPageNames = ['about', 'matching'];
 let multipleHtmlPlugins = htmlPageNames.map(name => {
     return new HtmlWebpackPlugin({
         template: `./src/${name}.html`, // relative path to the HTML files
@@ -25,7 +25,7 @@ module.exports = {
     entry: {
         main: "./src/js/index.js",
         about: "./src/js/about.js",
-        works: "./src/js/works.js",
+        matching: "./src/js/matching.js",
     },
     output: {
         filename: "[name].[contenthash].bundle.js",
