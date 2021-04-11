@@ -2,7 +2,7 @@ import "../styling/index.scss"
 //import "../gsap/menu"
 import "../js/maps"
 import { gsap } from "gsap";
-
+import "../styling/transitions.scss"
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
