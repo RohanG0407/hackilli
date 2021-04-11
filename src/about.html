@@ -6,16 +6,19 @@
     <title>bruh</title>
 </head>
 <body>
-<div class="holder">
-    <div data-role="controls">
-        <button id="record">Record</button>
-    </div>
-    <div data-role="recordings">
-        <div class="row">
-            <audio id="player" controls></audio>
-            <a>&#9660;</a>
+    <div id="msgContainer">
+        <div id="msgHolder"></div>
+        <div id="recHolder">
+            <div id="recordButtonHolder">
+                <button id="recordButton" value="false"></button>
+            </div>
+            <div id="recPlayerHolder">
+                <div class="recPlayer"></div>
+            </div>
+            <div id="sendButtonHolder">
+                <button id="sendButton" value="false">SEND</button>
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>
