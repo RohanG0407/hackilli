@@ -34,19 +34,12 @@ var user = JSON.parse(sessionStorage.getItem("user"));
 var matchUser = sessionStorage.getItem("match");
 var userData = firebase.database().ref('/messages/');
 
-/*
-const doc = storage.collection('audios');
-console.log(doc)
-doc.onSnapshot((doc) => {
-        console.log("Current data: ", doc);
-    });
-*/
 
 sendButton.addEventListener("click", function(e) {
     if (player.checkNew() === true) {
         sendMessage(user.name, player.getSrc());
         firebase.database().ref('/messages/').push({
-            update: "new_message",
+            update: user.name,
         });
         var storageRef = firebase.storage().ref().child("audios").child(user.name + ".webm")
         storageRef.put(audioData).then((snapshot) => {
@@ -59,22 +52,31 @@ sendButton.addEventListener("click", function(e) {
 
 userData.on('value', (snapshot) => {
     let name = null;
-    firebase.storage().ref().child('audios/' + matchUser + '.webm').getMetadata()
-        .then((metadata) => {
-            name = metadata.name
-            console.log(name)
-        })
-        .catch((error) => {
-        // Uh-oh, an error occurred!
-    });
-    firebase.storage().ref().child('audios/' + matchUser + '.webm').getDownloadURL()
-        .then((metadata) => {
+    const data = snapshot.val();
+    let len = (Object.keys(data)).length
+    let update_name = data[Object.keys(data)[len - 1]]['update']
 
-            player.setSrc(metadata);
-        })
-        .catch((error) => {
-            // Uh-oh, an error occurred!
-        });
+    if(update_name != user.name) {
+        firebase.storage().ref().child('audios/' + matchUser + '.webm').getMetadata()
+            .then((metadata) => {
+                name = metadata.name
+                console.log(name)
+            })
+            .catch((error) => {
+                // Uh-oh, an error occurred!
+            });
+        firebase.storage().ref().child('audios/' + matchUser + '.webm').getDownloadURL()
+            .then((metadata) => {
+
+                sendMessage(matchUser, metadata);
+
+            })
+            .catch((error) => {
+                // Uh-oh, an error occurred!
+            });
+    }
+
+
 });
 
 function sendMessage(person, src) {
