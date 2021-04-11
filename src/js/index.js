@@ -2,9 +2,9 @@ import "../styling/index.scss"
 //import "../gsap/menu"
 
 //import {writeUserData, readData} from "./firebase-database";
-/*import firebase from "firebase/app";
+import firebase from "firebase/app";
 import "firebase/auth";
-import "firebase/database";*/
+import "firebase/database";
 
 //initializing things to manipulate
 const offsetRight = 1.65;
