@@ -6,6 +6,22 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 
+let firebaseConfig = {
+    apiKey: "AIzaSyDADvqzekpnzT_Fc4U2SQeop5d4bn_P3QE",
+    authDomain: "hackilli.firebaseapp.com",
+    databaseURL: "https://hackilli-default-rtdb.firebaseio.com",
+    projectId: "hackilli",
+    storageBucket: "hackilli.appspot.com",
+    messagingSenderId: "630237405175",
+    appId: "1:630237405175:web:2846a328473902acd358f2",
+    measurementId: "G-R0EWT106GW"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+let database = firebase.database()
+
+
 //initializing things to manipulate
 const offsetRight = 1.65;
 const offsetLeft = -4.9;
@@ -46,6 +62,34 @@ input.addEventListener("keyup", function(event) {
         // Cancel the default action, if needed
         event.preventDefault();
         // Trigger the button element with a click
+        let usersData = firebase.database().ref('users');
+        //let newPostKey = firebase.database().ref().child('users').push().key;
+
+        usersData.get().then(function(snapshot) {
+            if (snapshot.exists()) {
+                let snap = snapshot.val();
+                console.log(snap);
+                for (let key in snap) {
+                    if (snap.hasOwnProperty(key)) {
+                        console.log(key + " -> " + snap[key]['name']);
+                        if(snap[key]['name'] === input.value) {
+                            break
+                        }
+                    }
+                    firebase.database().ref('/users/').push({
+                        name: input.value,
+                        type: null
+                    });
+                }
+            }
+            else {
+                console.log("No data available");
+            }
+        }).catch(function(error) {
+            console.error(error);
+        });
+
+
         firstMove(button1, button2);
     }
 });
@@ -159,7 +203,6 @@ function removeQuestion(question, button1, button2) {
                 button2.style.opacity = 0.35 - (progress * 0.35);
             }
 
-
         },
         timing: quadEaseInOut
     });
@@ -213,30 +256,10 @@ function animate({timing, draw, duration}) {
     });
 }
 
+let name = "Rohan"
+let type = "EST"
 
-/*var firebaseConfig = {
-    apiKey: "AIzaSyDADvqzekpnzT_Fc4U2SQeop5d4bn_P3QE",
-    authDomain: "hackilli.firebaseapp.com",
-    databaseURL: "https://hackilli-default-rtdb.firebaseio.com",
-    projectId: "hackilli",
-    storageBucket: "hackilli.appspot.com",
-    messagingSenderId: "630237405175",
-    appId: "1:630237405175:web:2846a328473902acd358f2",
-    measurementId: "G-R0EWT106GW"
-};
 
-firebase.initializeApp(firebaseConfig);
-
-var database = firebase.database()
-
-let name = "rohan"
-let email = "Hangar"
-let userId = 10*/
-
-/*firebase.database().ref('/buildings/yes').set({
-    username: name,
-    email: email
-});*/
 
 
 
