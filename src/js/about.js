@@ -1,4 +1,21 @@
 import "../styling/about.scss"
+import firebase from "firebase/app";
+import "firebase/storage";
+
+var firebaseConfig = {
+    apiKey: "AIzaSyDADvqzekpnzT_Fc4U2SQeop5d4bn_P3QE",
+    authDomain: "hackilli.firebaseapp.com",
+    databaseURL: "https://hackilli-default-rtdb.firebaseio.com",
+    projectId: "hackilli",
+    storageBucket: "hackilli.appspot.com",
+    messagingSenderId: "630237405175",
+    appId: "1:630237405175:web:2846a328473902acd358f2",
+    measurementId: "G-R0EWT106GW"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+var storage = firebase.storage();
 
 
 var MSGS = require("./Messages.js");
@@ -11,6 +28,8 @@ const recButton = document.getElementById("recordButton");
 const sendButton = document.getElementById("sendButton");
 
 var messageCount = 0;
+
+var user = JSON.parse(sessionStorage.getItem("user"));
 
 sendButton.addEventListener("click", function(e) {
     if (player.checkNew() === true) {
@@ -44,12 +63,13 @@ function sendMessage(person="YOU", src) {
     textDiv.style.fontSize = "200%";
 
     var audio = null;
+    console.log(user);
 
     if (person === "YOU") {
         audio = new AP.AudioPlayer("#" + audioDiv.id);
         msg.style.backgroundImage = "linear-gradient(0deg, var(--recRed) 0%, var(--purple) 100%)";
         msg.style.float = "right";
-        textDiv.innerHTML = person;
+        textDiv.innerHTML = user.name;
     } else {
         audio = new AP.AudioPlayer("#" + audioDiv.id, "#2af598", "#0fbed8");
         msg.style.backgroundImage = "linear-gradient(0deg, var(--recRed) 0%, var(--purple) 100%)";
@@ -114,7 +134,10 @@ function handleMic() {
             if (e.data.size != 0) {
                 const audioUrl = URL.createObjectURL(e.data);
                 player.setSrc(audioUrl);
-                console.log(e.data)
+                var storageRef = firebase.storage().ref().child("audo.webm")
+                storageRef.put(e.data).then((snapshot) => {
+                    console.log('Uploaded a blob or file!');
+                });
             }
         });
     };

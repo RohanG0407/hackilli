@@ -1,7 +1,6 @@
 import "../styling/index.scss"
 import "../styling/matching.scss"
 import "../js/maps"
-import "../styling/transitions.scss"
 const user = require('./user.json')
 var fs = require("fs")
 
