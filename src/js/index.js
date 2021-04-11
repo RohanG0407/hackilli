@@ -123,6 +123,7 @@ document.getElementById("button5").addEventListener
         name: username,
         type: psycho_type
     };
+``
     /*let data = JSON.stringify(userObj, null, 2);
 
     fs.writeFile('user.json', data, (err) => {
@@ -133,6 +134,7 @@ document.getElementById("button5").addEventListener
         name: username,
         type: psycho_type
     });
+    sessionStorage.setItem("user", userObj);
     location.replace("matching.html")
 });
 
@@ -145,6 +147,7 @@ document.getElementById("button6").addEventListener
         name: username,
         type: psycho_type
     };
+
     /*
     let data = JSON.stringify(userObj, null, 2);
 
@@ -157,6 +160,7 @@ document.getElementById("button6").addEventListener
         name: username,
         type: psycho_type
     });
+    sessionStorage.setItem("user", userObj);
     location.replace("matching.html")
 });
 
