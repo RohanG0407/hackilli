@@ -1,14 +1,14 @@
 class AudioPlayer {
     constructor(selector, color1="#273c75", color2="#079992", color3="#32CD32", color4="#fff") {
-        var playerElement = document.querySelector(selector);
-        playerElement.style.width = "100%";
-        playerElement.style.height = "100%";
-        playerElement.style.float = "right";
-        playerElement.style.display = "flex";
-        playerElement.style.justifyContent = "center";
-        playerElement.style.alignItems = "center";
-        playerElement.style.borderRadius = "50px";
-        playerElement.style.background = "linear-gradient(to right bottom, " + color1 + ", " + color2;
+        this.playerElement = document.querySelector(selector);
+        this.playerElement.style.width = "100%";
+        this.playerElement.style.height = "100%";
+        this.playerElement.style.float = "right";
+        this.playerElement.style.display = "flex";
+        this.playerElement.style.justifyContent = "center";
+        this.playerElement.style.alignItems = "center";
+        this.playerElement.style.borderRadius = "50px";
+        this.playerElement.style.background = "linear-gradient(to right bottom, " + color1 + ", " + color2;
 
         var buttonSize = "40px";
         var textSize = "35px";
@@ -49,24 +49,20 @@ class AudioPlayer {
 
         bar.appendChild(progress);
 
-        playerElement.appendChild(playButton);
-        playerElement.appendChild(bar);
+        this.playerElement.appendChild(playButton);
+        this.playerElement.appendChild(bar);
 
         this.audioElement = document.createElement("audio");
         var audio = this.audioElement;
 
         audio.addEventListener("durationchange", function() {
-            if (this.duration !== Infinity) {
-                audioDuration = this.duration;
-                console.log("New Duration: " + audioDuration);
-            }
+            if (this.duration !== Infinity) { audioDuration = this.duration; }
         });
 
         audio.muted = false;
 
         audio.addEventListener("timeupdate", function() {
             var width = 100 * this.currentTime / audioDuration;
-            console.log("Progress: " + width);
             progress.style.width = width + "%";
         });
 
@@ -87,9 +83,32 @@ class AudioPlayer {
                 this.innerHTML = playText;
             }
         });
+
+        this.isNew = false;
     }
 
-    setSrc(src) { if (src != null) { this.audioElement.src = src; } }
+    setSrc(src) {
+        if (src != null) {
+            this.audioElement.src = src;
+            this.isNew = true;
+        }
+    }
+
+    getSrc() {
+        return this.audioElement.src;
+    }
+
+    checkNew() {
+        if (this.isNew === true) {
+            this.isNew = false;
+            return true;
+        }
+        return false;
+    }
+
+    getElement() {
+        return this.playerElement;
+    }
 
     play() { this.audioElement.play(); }
 }
