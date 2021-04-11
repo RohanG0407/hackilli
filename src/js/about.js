@@ -12,6 +12,8 @@ const sendButton = document.getElementById("sendButton");
 
 var messageCount = 0;
 
+var user = JSON.parse(sessionStorage.getItem("user"));
+
 sendButton.addEventListener("click", function(e) {
     if (player.checkNew() === true) {
         sendMessage("YOU", player.getSrc());
@@ -44,12 +46,13 @@ function sendMessage(person="YOU", src) {
     textDiv.style.fontSize = "200%";
 
     var audio = null;
+    console.log(user);
 
     if (person === "YOU") {
         audio = new AP.AudioPlayer("#" + audioDiv.id);
         msg.style.backgroundImage = "linear-gradient(0deg, var(--recRed) 0%, var(--purple) 100%)";
         msg.style.float = "right";
-        textDiv.innerHTML = person;
+        textDiv.innerHTML = user.name;
     } else {
         audio = new AP.AudioPlayer("#" + audioDiv.id, "#2af598", "#0fbed8");
         msg.style.backgroundImage = "linear-gradient(0deg, var(--recRed) 0%, var(--purple) 100%)";
