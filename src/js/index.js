@@ -1,8 +1,12 @@
 import "../styling/index.scss"
+import "../styling/transitions.scss"
 //import "../gsap/menu"
 import "../js/maps"
 import { gsap } from "gsap";
 //import "../js/matching"
+//import "../js/script.js"
+//import "../styling/transitions.scss"
+//import "../js/script"
 
 //import {writeUserData, readData} from "./firebase-database";
 import firebase from "firebase/app";
@@ -125,7 +129,7 @@ document.getElementById("button5").addEventListener
         name: username,
         type: psycho_type
     });
-    location.replace("matching.html")
+    location.replace("/matching.html")
 });
 
 document.getElementById("button6").addEventListener
@@ -137,7 +141,7 @@ document.getElementById("button6").addEventListener
         name: username,
         type: psycho_type
     });
-    location.replace("matching.html")
+    location.replace("/matching.html")
 });
 
 // Execute a function when the user releases a key on the keyboard

@@ -5,7 +5,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --config webpack.config.js --open Firefox",
+    "start": "webpack serve --config webpack.config.js --open Chrome",
     "build": "webpack --config webpack.config.js",
     "deploy": "rm -rf dist/ && npm run build && gh-pages -d dist"
   },
@@ -21,10 +21,12 @@
   },
   "homepage": "https://github.com/RohanG0407/hackilli",
   "dependencies": {
+    "@dogstudio/highway": "^2.2.2",
     "firebase": "^8.2.0",
     "gh-pages": "^3.1.0",
     "gsap": "^3.6.1",
-    "mapbox-gl": "^2.2.0"
+    "mapbox-gl": "^2.2.0",
+    "swup": "^2.0.14"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
