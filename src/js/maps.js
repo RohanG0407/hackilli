@@ -8,3 +8,10 @@ const map = new mapboxgl.Map({
     center: [-88.2272, 40.1020], // starting position [lng, lat]
     zoom: 12 // starting zoom
 });
+
+//let user_location = navigator.geolocation.getCurrentPosition()
+
+
+function addMarker(position) {
+
+}

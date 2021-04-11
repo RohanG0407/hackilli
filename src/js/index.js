@@ -1,6 +1,7 @@
 import "../styling/index.scss"
 //import "../gsap/menu"
 import "../js/maps"
+import { gsap } from "gsap";
 
 //import {writeUserData, readData} from "./firebase-database";
 import firebase from "firebase/app";
@@ -84,7 +85,7 @@ button6.style.pointerEvents = "none";
 //assigns each button an on click event listener
 document.getElementById("button1").addEventListener
 ("click", function() {
-    initialMove(button1, button2, offsetRight, offsetLeft)
+    initialMove(button2, button1, button2)
     e_or_I = "extrovert"
     psycho_type = "E"
     console.log(psycho_type)
@@ -92,7 +93,7 @@ document.getElementById("button1").addEventListener
 
 document.getElementById("button2").addEventListener
 ("click", function() {
-    initialMove(button2, button1, offsetLeft, offsetRight)
+    initialMove(button1, button1, button2)
     e_or_I = "introvert"
     psycho_type = "I"
     console.log(psycho_type)
@@ -100,7 +101,7 @@ document.getElementById("button2").addEventListener
 
 document.getElementById("button3").addEventListener
 ("click", function() {
-    secondMove(button3, button4, offsetRight, offsetLeft)
+    secondMove(button4, button3, button4)
     n_or_s = "intuition"
     psycho_type = psycho_type.concat("N")
     console.log(psycho_type)
@@ -108,7 +109,7 @@ document.getElementById("button3").addEventListener
 
 document.getElementById("button4").addEventListener
 ("click", function() {
-    secondMove(button4, button3, offsetLeft, offsetRight)
+    secondMove(button3, button3, button4)
     n_or_s = "sensing"
     psycho_type = psycho_type.concat("S")
     console.log(psycho_type)
@@ -192,10 +193,11 @@ function firstMove(button1, button2) {
     }, 3000);
 }
 
-function initialMove(button1, button2, offset1, offset2) {
+function initialMove(buttonNot, button_left, button_right) {
     moveLogo();
+    gsap.to(Q1, {opacity: 0});
     moveQuestion(question1, question2, button3, button4);
-    moveButton(button1, button2, offset1, offset2);
+    moveButton(buttonNot, button_left, button_right);
     setTimeout(function(){
         //addText(Q2,random_situation.extrovert.question,A3, A4, random_situation.extrovert.intuition.answer,random_situation.extrovert.sensing.answer)
         addText(Q2,random_situation[e_or_I]["question"],A3, A4, random_situation[e_or_I]["intuition"]["answer"],random_situation[e_or_I]["sensing"]["answer"])
@@ -206,9 +208,10 @@ function initialMove(button1, button2, offset1, offset2) {
     }, 3000);
 }
 
-function secondMove(firstButton, secondButton, offset1, offset2) {
+function secondMove(buttonNot, button_left, button_right) {
+    gsap.to(Q2, {opacity: 0});
     moveQuestion(question2, question3, button5, button6);
-    moveButton(firstButton, secondButton, offset1, offset2);
+    moveButton(buttonNot, button_left, button_right);
     removeQuestion(question1, button1, button2);
     setTimeout(function(){
         //addText(Q3,random_situation.extrovert.intuition.question,A5, A6, random_situation.extrovert.intuition.feeling.answer,random_situation.extrovert.intuition.thinking.answer)
@@ -259,56 +262,22 @@ function moveQuestion(firstQuestion, secondQuestion, button1, button2) {
     });
 }
 
-function moveButton(chosenButton, otherButton, offset1, offset2) {
-    let initialWidth = chosenButton.offsetWidth;
-    let initialHeight = chosenButton.offsetHeight - 3;
-    let initialTop = chosenButton.offsetTop;
-    let initialLeft1 = chosenButton.offsetLeft;
-    let initialLeft2 = otherButton.offsetLeft;
-
-    animate({
-        duration: 2100,
-        draw: function(progress) {
-            chosenButton.style.width = -(progress * initialWidth / 4) + initialWidth + 'px';
-            chosenButton.style.height = -(progress * initialHeight / 1.7) + initialHeight + 'px';
-            chosenButton.style.top = initialTop - (progress * initialTop / 1.9) + 'px';
-            chosenButton.style.left = initialLeft1 + (progress * initialLeft1 / offset1) + 'px';
-            otherButton.style.width = -(progress * initialWidth / 4) + initialWidth + 'px';
-            otherButton.style.height = -(progress * initialHeight / 1.7) + initialHeight + 'px';
-            otherButton.style.top = initialTop - (progress * initialTop / 1.9) + 'px';
-            otherButton.style.left = initialLeft2 + (progress * initialLeft2 / offset2) + 'px';
-            otherButton.style.opacity = 0.35 - (progress * 4 * 0.35);
-        },
-        timing: quadEaseInOut
-    });
+function moveButton(otherButton, left_button, right_button) {
+    gsap.to(left_button, {x:160,y:-350, width: "15%", height: "5%", duration: 2.5})
+    gsap.to(right_button, {x:-330,y:-350, duration: 2.5, width: "15%", height: "5%"})
+    gsap.to(otherButton, {opacity: 0, duration: 2.5})
 }
 
 function removeQuestion(question, button1, button2) {
-    animate({
-        duration: 1000,
-        draw: function(progress) {
-            question.style.opacity = 0.35 - (progress * 0.35)
-            if(button1 != null) {
-                button1.style.opacity = 0.35 - (progress * 0.35);
-            }
-            if(button2 != null) {
-                button2.style.opacity = 0.35 - (progress * 0.35);
-            }
-        },
-        timing: quadEaseInOut
-    });
+    gsap.to(question, {opacity: 0, duration: 1})
+    gsap.to(button1, {opacity: 0, duration: 1})
+    gsap.to(button2, {opacity: 0, duration: 1})
 }
 
 function addQuestion(question, button1, button2) {
-    animate({
-        duration: 2500,
-        draw: function(progress) {
-            question.style.opacity = (progress * 0.35)
-            button1.style.opacity = (progress * 0.35);
-            button2.style.opacity = (progress * 0.35);
-        },
-        timing: quadEaseInOut
-    });
+    gsap.to(question, {opacity: .35, duration: 1})
+    gsap.to(button1, {opacity: .35, duration: 1})
+    gsap.to(button2, {opacity: .35, duration: 1})
 }
 
 //ANIMATION CODEEEE
