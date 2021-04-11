@@ -1,7 +1,7 @@
 import "../styling/about.scss"
 
 
-var MSGS = require("./Messages");
+var MSGS = require("./Messages.js");
 var messages = new MSGS.Messages("#msgHolder");
 
 var AP = require("./AudioPlayer.js");
@@ -14,25 +14,50 @@ var messageCount = 0;
 
 sendButton.addEventListener("click", function(e) {
     if (player.checkNew() === true) {
-        var messageData = messages.createMsg();
-        var msg = messageData[0];
-        var count = messageData[1];
-        var textDiv = document.createElement('div');
-        var audioDiv = document.createElement('div');
-
-        msg.appendChild(textDiv);
-        msg.appendChild(audioDiv);
-        audioDiv.id = "audio" + count;
-
-        var audio = new AP.AudioPlayer("#" + audioDiv.id);
-        audio.setSrc(player.getSrc());
-
-        msg.style.width = "60%";
-        msg.style.height = "100px";
-        msg.style.margin = "2%";
-        msg.style.backgroundImage = "linear-gradient(0deg, var(--holder_c1) 0%, var(--holder_c2) 100%)";
+        sendMessage("YOU", player.getSrc());
+        sendMessage("UR MOM", player.getSrc());
     }
 });
+
+function sendMessage(person="YOU", src) {
+    var messageData = messages.createMsg();
+    var msg = messageData[0];
+    var count = messageData[1];
+    var textDiv = document.createElement('div');
+    var audioDiv = document.createElement('div');
+
+    msg.appendChild(textDiv);
+    msg.appendChild(audioDiv);
+    audioDiv.id = "audio" + count;
+
+    msg.style.width = "55%";
+    msg.style.height = "30%";
+    msg.style.height = "90px";
+    msg.style.margin = "2%";
+    msg.style.borderRadius = "35px";
+
+    textDiv.style.width = "100%";
+    textDiv.style.height = "40%";
+    textDiv.style.userSelect = "none";
+    textDiv.style.fontFamily = "Londrina solid, cursive";
+    textDiv.style.textAlign = "center";
+    textDiv.style.fontSize = "200%";
+
+    var audio = null;
+
+    if (person === "YOU") {
+        audio = new AP.AudioPlayer("#" + audioDiv.id);
+        msg.style.backgroundImage = "linear-gradient(0deg, var(--recRed) 0%, var(--purple) 100%)";
+        msg.style.float = "right";
+        textDiv.innerHTML = person;
+    } else {
+        audio = new AP.AudioPlayer("#" + audioDiv.id, "#2af598", "#0fbed8");
+        msg.style.backgroundImage = "linear-gradient(0deg, var(--recRed) 0%, var(--purple) 100%)";
+        msg.style.float = "left";
+        textDiv.innerHTML = person;
+    }
+    audio.setSrc(src);
+}
 
 function handleMic() {
     var micEnabled = false;

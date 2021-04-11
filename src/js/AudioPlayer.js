@@ -7,7 +7,7 @@ class AudioPlayer {
         this.playerElement.style.display = "flex";
         this.playerElement.style.justifyContent = "center";
         this.playerElement.style.alignItems = "center";
-        this.playerElement.style.borderRadius = "50px";
+        this.playerElement.style.borderRadius = "35px";
         this.playerElement.style.background = "linear-gradient(to right bottom, " + color1 + ", " + color2;
 
         var buttonSize = "40px";

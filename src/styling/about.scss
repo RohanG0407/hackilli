@@ -3,18 +3,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap%27');
 
 :root {
-  --holder_c1: red;
-  --holder_c2: purple;
-  --but_bord1: #aaa;
-  --but_bord2: #333;
-  --but_top_pre: #de7ede;
-  --but_bot_pre: #ff4d4d;
-  --but_top_post: #de49de;
-  --but_bot_post: #ff1919;
-  --but_top_rec: #b30003;
-  --but_bot_rec: #ff0822;
-  --send_bot_left: #ff00ff;
-  --send_bot_right: #ff6600;
+  --recRed: #ff0822;
+  --purple: purple;
+  --gray: #aaa;
+  --darkGray: #333;
+  --lightPink: #de7ede;
+  --lightRed: #ff4d4d;
+  --pink: #de49de;
+  --red: #ff1919;
+  --darkRed: #b30003;
+  --strongPink: #ff00ff;
+  --orange: #ff6600;
   --white: #fff;
 
   --bot_bar_height: 120px;
@@ -99,8 +98,8 @@ body {
 }
 
 #recHolder {
-  background-color: var(--holder_c1);
-  background-image: linear-gradient(0deg, var(--holder_c1) 0%, var(--holder_c2) 100%);
+  background-color: var(--recRed);
+  background-image: linear-gradient(0deg, var(--recRed) 0%, var(--purple) 100%);
   border-radius: 30px;
   width: 100%;
   height: var(--bot_bar_height);
@@ -125,19 +124,19 @@ body {
   outline: none;
   display: block;
   border: none;
-  background-image: linear-gradient(0deg, var(--but_bot_pre) 50%, var(--but_top_pre) 100%);
+  background-image: linear-gradient(0deg, var(--lightRed) 50%, var(--lightPink) 100%);
   width: 75px;
   height: 75px;
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0px 5px 5px 2px rgba(0, 0, 0, 0.3) inset,
-  0px 0px 0px 4px var(--but_bord1), 0px 0px 0px 10px var(--but_bord2);
+  0px 0px 0px 4px var(--gray), 0px 0px 0px 10px var(--darkGray);
 }
 #recordButton:hover {
-  background-image: linear-gradient(0deg, var(--but_bot_post) 50%, var(--but_top_post) 100%);
+  background-image: linear-gradient(0deg, var(--red) 50%, var(--pink) 100%);
 }
 #recordButton:active {
-  background-image: linear-gradient(0deg, var(--but_bot_rec) 0%, var(--but_top_rec) 100%);
+  background-image: linear-gradient(0deg, var(--darkRed) 0%, var(--darkRed) 100%);
 }
 
 #sendButtonHolder {
@@ -149,10 +148,11 @@ body {
   float: right;
 }
 #sendButton {
+  float: right;
   outline: none;
   display: block;
   border: none;
-  background-image: linear-gradient(90deg, var(--send_bot_left) 0%, var(--send_bot_right) 100%);
+  background-image: linear-gradient(90deg, var(--strongPink) 0%, var(--orange) 100%);
   width: 80px;
   height: 50px;
   border-radius: 40%;
@@ -161,11 +161,11 @@ body {
   font-size: 125%;
   user-select: none;
   cursor: pointer;
-  box-shadow: 0px 5px 5px 2px rgba(0, 0, 0, 0.3) inset, 0px 0px 0px 5px var(--but_bord2);
+  box-shadow: 0px 5px 5px 2px rgba(0, 0, 0, 0.3) inset, 0px 0px 0px 5px var(--darkGray);
 }
 #sendButton:hover {
-  background-image: linear-gradient(0deg, var(--but_bot_post) 50%, var(--but_top_post) 100%);
+  background-image: linear-gradient(0deg, var(--red) 50%, var(--pink) 100%);
 }
 #sendButton:active {
-  background-image: linear-gradient(0deg, var(--but_bot_rec) 0%, var(--but_top_rec) 100%);
+  background-image: linear-gradient(0deg, var(--recRed) 0%, var(--darkRed) 100%);
 }
