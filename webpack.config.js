@@ -88,6 +88,11 @@ module.exports = {
                 }
             },
             {
+                test: /\.css$/,
+                //Reverse order is how it loads so SCSS -> CSS -> <script> injection
+                use: [MiniCssExtractPlugin.loader, "css-loader"]
+            },
+            {
                 test: /\.ttf$/,
                 use: [
                     {

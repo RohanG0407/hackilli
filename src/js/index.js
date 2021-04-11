@@ -1,5 +1,6 @@
 import "../styling/index.scss"
 //import "../gsap/menu"
+import "../js/maps"
 
 //import {writeUserData, readData} from "./firebase-database";
 import firebase from "firebase/app";

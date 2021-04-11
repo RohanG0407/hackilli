@@ -24,6 +24,13 @@ body {
   overflow: visible;
 }
 
+#map {
+  height: 100%;
+  width: 100%;
+  z-index: -5;
+  position: absolute;
+}
+
 #questionName1, #questionName2, #questionName3, #questionName0 {
   text-align: center;
   margin: auto;
