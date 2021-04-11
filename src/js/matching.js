@@ -2,9 +2,8 @@ import "../styling/index.scss"
 import "../styling/matching.scss"
 import "../js/maps"
 import "../styling/transitions.scss"
-const user = require('./user.json')
-var fs = require("fs")
 
+var user = JSON.parse(sessionStorage.getItem("user"));
 console.log(user)
 
 import firebase from "firebase/app";
@@ -33,7 +32,8 @@ userData.on('value', (snapshot) => {
     for (let key in data) {
         if (data.hasOwnProperty(key)) {
             console.log(key + " -> " + data[key]['name']);
-            if(data[key]['type'] === 'INT' && data[key]['name'] != "Rohan") {
+            if(data[key]['type'] === user.type && data[key]['name'] != user.name) {
+                sessionStorage.setItem('match', data[key]['name']);
                 window.location.replace("about.html")
                 break
             }

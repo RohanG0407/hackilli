@@ -1,7 +1,8 @@
 import "../styling/about.scss"
 import firebase from "firebase/app";
 import "firebase/storage";
-import "firebase/firestore"
+import "firebase/database";
+
 var firebaseConfig = {
     apiKey: "AIzaSyDADvqzekpnzT_Fc4U2SQeop5d4bn_P3QE",
     authDomain: "hackilli.firebaseapp.com",
@@ -16,6 +17,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 var storage = firebase.storage();
+var audioData = null;
 
 var MSGS = require("./Messages.js");
 var messages = new MSGS.Messages("#msgHolder");
@@ -29,6 +31,8 @@ const sendButton = document.getElementById("sendButton");
 var messageCount = 0;
 
 var user = JSON.parse(sessionStorage.getItem("user"));
+var matchUser = sessionStorage.getItem("match");
+var userData = firebase.database().ref('/messages/');
 
 /*
 const doc = storage.collection('audios');
@@ -40,12 +44,40 @@ doc.onSnapshot((doc) => {
 
 sendButton.addEventListener("click", function(e) {
     if (player.checkNew() === true) {
-        sendMessage("YOU", player.getSrc());
-        //sendMessage("UR MOM", player.getSrc());
+        sendMessage(user.name, player.getSrc());
+        firebase.database().ref('/messages/').push({
+            update: "new_message",
+        });
+        var storageRef = firebase.storage().ref().child("audios").child(user.name + ".webm")
+        storageRef.put(audioData).then((snapshot) => {
+            console.log('Uploaded a blob or file!');
+        });
     }
+
 });
 
-function sendMessage(person="YOU", src) {
+
+userData.on('value', (snapshot) => {
+    let name = null;
+    firebase.storage().ref().child('audios/' + matchUser + '.webm').getMetadata()
+        .then((metadata) => {
+            name = metadata.name
+            console.log(name)
+        })
+        .catch((error) => {
+        // Uh-oh, an error occurred!
+    });
+    firebase.storage().ref().child('audios/' + matchUser + '.webm').getDownloadURL()
+        .then((metadata) => {
+
+            player.setSrc(metadata);
+        })
+        .catch((error) => {
+            // Uh-oh, an error occurred!
+        });
+});
+
+function sendMessage(person, src) {
     var messageData = messages.createMsg();
     var msg = messageData[0];
     var count = messageData[1];
@@ -72,7 +104,7 @@ function sendMessage(person="YOU", src) {
     var audio = null;
     console.log(user);
 
-    if (person === "YOU") {
+    if (person === user.name) {
         audio = new AP.AudioPlayer("#" + audioDiv.id);
         msg.style.backgroundImage = "linear-gradient(0deg, var(--recRed) 0%, var(--purple) 100%)";
         msg.style.float = "right";
@@ -140,37 +172,8 @@ function handleMic() {
         recorder.addEventListener('dataavailable', function(e) {
             if (e.data.size != 0) {
                 const audioUrl = URL.createObjectURL(e.data);
-                firebase.storage().ref().child('audios/audo.webm').getDownloadURL()
-                    .then((metadata) => {
-                        console.log(metadata)
-                        console.log(audioUrl)
-                        player.setSrc(metadata);
-                    })
-                    .catch((error) => {
-                        // Uh-oh, an error occurred!
-                    });
-                /*firebase.storage().ref().child('audios/audo.webm').getDownloadURL()
-                    .then((url) => {
-                        var xhr = new XMLHttpRequest();
-                        xhr.responseType = 'blob';
-                        xhr.onload = (event) => {
-                            var blob = xhr.response;
-                            console.log(blob)
-                        };
-                        xhr.open('GET', url);
-                        xhr.send();
-
-                        player.setSrc(url);
-                    })
-                    .catch((error) => {
-
-                    });*/
-
-
-                var storageRef = firebase.storage().ref().child("audios").child("audo.webm")
-                storageRef.put(e.data).then((snapshot) => {
-                    console.log('Uploaded a blob or file!');
-                });
+                audioData = e.data;
+                player.setSrc(audioUrl);
             }
         });
     };

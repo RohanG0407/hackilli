@@ -133,6 +133,7 @@ document.getElementById("button5").addEventListener
         name: username,
         type: psycho_type
     });
+    sessionStorage.setItem("user", JSON.stringify(userObj));
     location.replace("matching.html")
 });
 
@@ -157,6 +158,7 @@ document.getElementById("button6").addEventListener
         name: username,
         type: psycho_type
     });
+    sessionStorage.setItem("user", JSON.stringify(userObj));
     location.replace("matching.html")
 });
 

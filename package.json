@@ -10,11 +10,11 @@
   "scripts": {
     "start": "webpack serve --config webpack.config.js --open Chrome",
     "build": "webpack --config webpack.config.js",
-    "deploy": "rm -rf dist/ && npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RohanG0407/myPortfolio.git"
+    "url": "git+https://github.com/RohanG0407/hackilli.git"
   },
   "keywords": [],
   "author": "",
