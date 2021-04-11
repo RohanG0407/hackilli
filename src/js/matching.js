@@ -1,10 +1,6 @@
 import "../styling/index.scss"
 import "../styling/matching.scss"
 import "../js/maps"
-const user = require('./user.json')
-var fs = require("fs")
-
-console.log(user)
 
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -25,14 +21,19 @@ firebase.initializeApp(firebaseConfig);
 
 let database = firebase.database()
 
+let userObj = sessionStorage.getItem("user")
+userObj = JSON.parse(userObj)
+console.log(userObj["type"])
+
 
 var userData = firebase.database().ref('users/');
 userData.on('value', (snapshot) => {
     const data = snapshot.val();
+    console.log(data)
     for (let key in data) {
         if (data.hasOwnProperty(key)) {
             console.log(key + " -> " + data[key]['name']);
-            if(data[key]['type'] === 'INT' && data[key]['name'] != "Rohan") {
+            if(data[key]['type'] === userObj['type'] && data[key]['name'] != userObj['name']) {
                 window.location.replace("about.html")
                 break
             }

@@ -1,4 +1,21 @@
 import "../styling/about.scss"
+import firebase from "firebase/app";
+import "firebase/storage";
+
+var firebaseConfig = {
+    apiKey: "AIzaSyDADvqzekpnzT_Fc4U2SQeop5d4bn_P3QE",
+    authDomain: "hackilli.firebaseapp.com",
+    databaseURL: "https://hackilli-default-rtdb.firebaseio.com",
+    projectId: "hackilli",
+    storageBucket: "hackilli.appspot.com",
+    messagingSenderId: "630237405175",
+    appId: "1:630237405175:web:2846a328473902acd358f2",
+    measurementId: "G-R0EWT106GW"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+var storage = firebase.storage();
 
 
 var MSGS = require("./Messages.js");
@@ -117,7 +134,10 @@ function handleMic() {
             if (e.data.size != 0) {
                 const audioUrl = URL.createObjectURL(e.data);
                 player.setSrc(audioUrl);
-                console.log(e.data)
+                var storageRef = firebase.storage().ref().child("audo.webm")
+                storageRef.put(e.data).then((snapshot) => {
+                    console.log('Uploaded a blob or file!');
+                });
             }
         });
     };
