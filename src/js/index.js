@@ -265,8 +265,8 @@ function moveQuestion(firstQuestion, secondQuestion, button1, button2) {
 }
 
 function moveButton(otherButton, left_button, right_button) {
-    gsap.to(left_button, {top: "26%",right:"43%", width: "15%", height: "5%", duration: 2.5})
-    gsap.to(right_button, {top:"26%",right:"43%", duration: 2.5, width: "15%", height: "5%"})
+    gsap.to(left_button, {top: "26%",right:"42%", width: "15%", height: "5%", duration: 2.5})
+    gsap.to(right_button, {top:"26%",right:"42%", duration: 2.5, width: "15%", height: "5%"})
     gsap.to(otherButton, {opacity: 0, duration: 2.5})
 }
 
