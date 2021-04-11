@@ -345,7 +345,3 @@ function animate({timing, draw, duration}) {
 
     });
 }
-
-
-
-
